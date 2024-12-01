@@ -4,13 +4,12 @@ import { theme } from '@/src/theme/theme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function LoginScreen({ navigation }: any) {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [tipo, setTipo] = useState<'Paciente' | 'Profissional'>('Paciente'); // Define o tipo padrão
 
   const handleLogin = () => {
-    if (email && password && name) {
+    if (email && password) {
       // Valida e redireciona com base no tipo
       if (tipo === 'Paciente') {
         navigation.navigate('HomeScreen'); // Redireciona para tela do Paciente
@@ -28,18 +27,6 @@ export default function LoginScreen({ navigation }: any) {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <Text style={styles.title}>Login</Text>
-
-      {/* Campo Nome */}
-      <View style={styles.inputContainer}>
-        <Icon name="person" size={20} color={theme.colors.primary} style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="Nome:"
-          value={name}
-          onChangeText={setName}
-          placeholderTextColor={theme.colors.textSecondary}
-        />
-      </View>
 
       {/* Campo Email */}
       <View style={styles.inputContainer}>

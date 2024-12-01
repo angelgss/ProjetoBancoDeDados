@@ -8,7 +8,7 @@ export default function CadastroScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [especialidade, setEspecialidade] = useState('');
+  const [crp, setCRP] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [tipo, setTipo] = useState<'Paciente' | 'Profissional'>('Paciente');
 
@@ -18,7 +18,7 @@ export default function CadastroScreen({ navigation }: any) {
       email &&
       senha &&
       telefone &&
-      (tipo === 'Paciente' ? dataNascimento : especialidade)
+      (tipo === 'Paciente' ? dataNascimento : crp)
     ) {
       Alert.alert(
         'Cadastro Realizado',
@@ -144,9 +144,9 @@ export default function CadastroScreen({ navigation }: any) {
           <Icon name="work" size={20} color={theme.colors.primary} style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder="Especialidade (ex.: Psicólogo, Psiquiatra)"
-            value={especialidade}
-            onChangeText={setEspecialidade}
+            placeholder="CRP (Conselho regional de Psicologia)"
+            value={crp}
+            onChangeText={setCRP}
             placeholderTextColor={theme.colors.textSecondary}
           />
         </View>

@@ -1,52 +1,43 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
-
+import { View, Text, StyleSheet, Alert, FlatList, TouchableOpacity } from 'react-native';
 import { theme } from '@/src/theme/theme';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { FlatList } from 'react-native';
 
 // Dados fictícios para simulação
-const receitasMock = [
-    { id: '1', medicamento: 'um', dosagem: '500mg', data: '10/11/2024' },
-    { id: '2', medicamento: 'dois', dosagem: '600mg', data: '08/11/2024' },
-    { id: '3', medicamento: 'tres', dosagem: '20mg', data: '05/11/2024' },
+const relatoriosMock = [
+    { id: '1', titulo: 'Relatório de Psicoterapia', descricao: 'Sessão focada em ansiedade.', data: '10/11/2024' },
+    { id: '2', titulo: 'Relatório de Consulta', descricao: 'Acompanhamento semanal.', data: '08/11/2024' },
+    { id: '3', titulo: 'Relatório de Avaliação', descricao: 'Testes psicológicos realizados.', data: '05/11/2024' },
 ];
 
-export default function ReceitasScreen() {
-    const enviarParaFarmacia = (medicamento: string) => {
-        Alert.alert(
-            'Receita Enviada',
-            `A receita de ${medicamento} foi enviada para a farmácia com sucesso.`
-        );
+export default function RelatoriosScreen() {
+    const visualizarRelatorio = (titulo: string) => {
+        Alert.alert('Relatório Selecionado', `Visualizando detalhes do relatório: ${titulo}`);
     };
 
-    const renderReceita = ({ item }: { item: any }) => (
-        <View style={styles.receitaCard}>
-            <View style={styles.receitaInfo}>
-                <Text style={styles.medicamento}>{item.medicamento}</Text>
-                <Text style={styles.dosagem}>Dosagem: {item.dosagem}</Text>
+    const renderRelatorio = ({ item }: { item: any }) => (
+        <View style={styles.relatorioCard}>
+            <View style={styles.relatorioInfo}>
+                <Text style={styles.titulo}>{item.titulo}</Text>
+                <Text style={styles.descricao}>{item.descricao}</Text>
                 <Text style={styles.data}>Data: {item.data}</Text>
             </View>
             <TouchableOpacity
-                style={styles.buttonEnviar}
-                onPress={() => enviarParaFarmacia(item.medicamento)}
+                style={styles.buttonVisualizar}
+                onPress={() => visualizarRelatorio(item.titulo)}
             >
-                <Icon name="local-shipping" size={20} color={theme.colors.white} />
-                <Text style={styles.buttonText}>Enviar para Farmácia</Text>
+                <Text style={styles.buttonText}>Visualizar</Text>
             </TouchableOpacity>
         </View>
     );
 
     return (
-         <View style={styles.container}>
-            <Text style={styles.title}>Receitas Médicas</Text>
-            <Text style={styles.subtitle}>
-                Veja suas receitas médicas. Clique em "Enviar para Farmácia" para iniciar.
-            </Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>Relatórios Médicos</Text>
+            <Text style={styles.subtitle}>Acompanhe seus relatórios médicos abaixo:</Text>
             <FlatList
-                data={receitasMock}
+                data={relatoriosMock}
                 keyExtractor={(item) => item.id}
-                renderItem={renderReceita}
+                renderItem={renderRelatorio}
                 contentContainerStyle={styles.list}
                 showsVerticalScrollIndicator={false}
             />
@@ -76,7 +67,7 @@ const styles = StyleSheet.create({
     list: {
         paddingBottom: 10,
     },
-    receitaCard: {
+    relatorioCard: {
         backgroundColor: theme.colors.white,
         borderRadius: 15,
         padding: 15,
@@ -87,25 +78,25 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 2,
     },
-    receitaInfo: {
+    relatorioInfo: {
         marginBottom: 10,
     },
-    medicamento: {
+    titulo: {
         fontSize: 18,
         color: theme.colors.textPrimary,
         fontWeight: 'bold',
     },
-    dosagem: {
+    descricao: {
         fontSize: 16,
         color: theme.colors.textSecondary,
+        marginTop: 5,
     },
     data: {
         fontSize: 14,
         color: theme.colors.textSecondary,
         marginTop: 5,
     },
-    buttonEnviar: {
-        flexDirection: 'row',
+    buttonVisualizar: {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: theme.colors.primary,
@@ -115,7 +106,6 @@ const styles = StyleSheet.create({
     buttonText: {
         color: theme.colors.white,
         fontSize: 16,
-        marginLeft: 8,
         fontWeight: 'bold',
     },
 });

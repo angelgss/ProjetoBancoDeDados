@@ -1,12 +1,19 @@
-import React from 'react';
+// HomeScreen
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { theme } from '@/src/theme/theme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function HomeScreen({ navigation }: any) {
+  const [consultas, setConsultas] = useState<Date[]>([]);
+
+  // Função para adicionar consultas
+  const handleAddConsulta = (consulta: Date) => {
+    setConsultas((prev) => [...prev, consulta]);
+  };
+
   return (
     <View style={styles.container}>
-
       {/* Cabeçalho com ícone de usuário */}
       <View style={styles.header}>
         <View style={styles.userIconContainer}>
@@ -20,26 +27,26 @@ export default function HomeScreen({ navigation }: any) {
       {/* Botões de navegação */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('AgendaScreen')}
+        onPress={() => navigation.navigate('AgendaScreen', { onConsultaAgendada: handleAddConsulta })}
       >
         <Icon name="event" size={24} color={theme.colors.white} style={styles.icon} />
-        <Text style={styles.buttonText}>Agendar Consulta</Text>
+        <Text style={styles.buttonText}>Marcar uma Consulta</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('ReceitasScreen')}
+        onPress={() => navigation.navigate('RelatoriosScreen')}
       >
         <Icon name="medical-services" size={24} color={theme.colors.white} style={styles.icon} />
-        <Text style={styles.buttonText}>Receitas Médicas</Text>
-      </TouchableOpacity>
+        <Text style={styles.buttonText}>Relatorios</Text>
+      </TouchableOpacity>s
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('HistoricosScreen')}
+        onPress={() => navigation.navigate('SuaAgendaScreen', { consultas: consultas })}
       >
         <Icon name="history" size={24} color={theme.colors.white} style={styles.icon} />
-        <Text style={styles.buttonText}>Históricos</Text>
+        <Text style={styles.buttonText}>Sua agenda</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -49,7 +56,6 @@ export default function HomeScreen({ navigation }: any) {
         <Icon name="account-circle" size={24} color={theme.colors.white} style={styles.icon} />
         <Text style={styles.buttonText}>Meu Perfil</Text>
       </TouchableOpacity>
-
     </View>
   );
 }
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    flexDirection: 'row', // Ícone e texto lado a lado
+    flexDirection: 'row',
     backgroundColor: theme.colors.primary,
     paddingVertical: 20,
     borderRadius: 20,
@@ -112,6 +118,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   icon: {
-    marginRight: 8, // Espaço entre o ícone e o texto
+    marginRight: 8,
   },
 });

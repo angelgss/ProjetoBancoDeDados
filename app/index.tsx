@@ -9,9 +9,10 @@ import AgendaScreen from "./AgendaScreen";
 import ProfileScreen from "./ProfileScreen";
 import ProfissionalScreen from './Profissional';
 import HomeProScreen from './HomeProScreen';
-import HistoricoScreen from './HistoricosScreen';
-import ReceitasScreen from './ReceitasScreen';
+import SuaAgendaScreen from './SuaAgendaScreen';
+;
 import PagamentoScreen from './PagamentoScreen';
+import RelatoriosScreen from './RelatoriosScreen';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -26,8 +27,8 @@ export default function App() {
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="ProfissionalScreen" component={ProfissionalScreen} />
       <Stack.Screen name="HomeProScreen" component={HomeProScreen} />
-      <Stack.Screen name="HistoricoScreen" component={HistoricoScreen} />
-      <Stack.Screen name="ReceitasScreen" component={ReceitasScreen} />
+      <Stack.Screen name="SuaAgendaScreen" component={SuaAgendaScreen} />
+      <Stack.Screen name="RelatoriosScreen" component={RelatoriosScreen} />
       <Stack.Screen name="PagamentoScreen" component={PagamentoScreen} />
 
 

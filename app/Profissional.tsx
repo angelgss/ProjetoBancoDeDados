@@ -5,11 +5,11 @@ import { theme } from '@/src/theme/theme';
 const profissionais = [
     { id: '1', name: 'Dr. João Humberto', specialty: 'Psicólogo' },
     { id: '2', name: 'Dra. Jonas Maria', specialty: 'Psiquiatra' },
-    { id: '3', name: 'Dra Nataly', specialty: 'Psiquiatra' },
+    { id: '3', name: 'Dra Nataly', specialty: 'Psicologa' },
     { id: '4', name: 'Dr. Breno', specialty: 'Psicologa' },
     { id: '5', name: 'Dr. helio', specialty: 'psicologo' },
     { id: '6', name: 'Dr. Andre', specialty: 'Psicologo' },
-    { id: '7', name: 'Dr Lysandre', specialty: 'Psiquiatra' },
+    { id: '7', name: 'Dr Lysandre', specialty: 'psicologo' },
 ];
 
 export default function ProfissionalScreen({ navigation }: any) {

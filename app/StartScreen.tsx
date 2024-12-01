@@ -16,7 +16,7 @@
                 
 
                 <TouchableOpacity style={[styles.button, styles.buttonSpacing]} onPress={() => navigation.navigate('CadastroScreen')}>
-                    <Text style={styles.buttonText}>Eniciar</Text>
+                    <Text style={styles.buttonText}>Iniciar</Text>
                 </TouchableOpacity>
 
             </View>

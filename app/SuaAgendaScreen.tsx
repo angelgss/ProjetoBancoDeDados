@@ -1,29 +1,27 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { theme } from '@/src/theme/theme';
 
-export default function HistoricoScreen() {
-    // Dados de exemplo para os históricos
-    const historicos = [
-        { id: '1', tipo: 'Consulta', detalhe: 'Psicoterapia - 10/11/2024 às 15:00' },
-        { id: '2', tipo: 'Pagamento', detalhe: 'R$ 50,00 - Pago em 08/11/2024' },
-        { id: '3', tipo: 'Consulta', detalhe: 'Psicoterapia - 03/11/2024 às 14:00' },
-        { id: '4', tipo: 'Pagamento', detalhe: 'R$ 50,00 - Pago em 01/11/2024' },
-        { id: '5', tipo: 'Agendamento', detalhe: 'Psicoterapia marcada para 15/11/2024 às 10:00' },
+export default function SuaAgenda() {
+    // Dados de exemplo apenas para consultas
+    const consultas = [
+        { id: '1', profissional: 'Dr. João Silva', dataHora: '10/11/2024 às 15:00' },
+        { id: '2', profissional: 'Dra. Maria Oliveira', dataHora: '03/11/2024 às 14:00' },
+        { id: '3', profissional: 'Dr. Carlos Santos', dataHora: '01/11/2024 às 10:30' },
     ];
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Históricos</Text>
-            <Text style={styles.subtitle}>Veja seus registros recentes:</Text>
+            <Text style={styles.title}>Histórico de Consultas</Text>
+            <Text style={styles.subtitle}>Confira suas consultas realizadas:</Text>
 
             <FlatList
-                data={historicos}
+                data={consultas}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={styles.card}>
-                        <Text style={styles.cardTitle}>{item.tipo}</Text>
-                        <Text style={styles.cardDetail}>{item.detalhe}</Text>
+                        <Text style={styles.cardTitle}>{item.profissional}</Text>
+                        <Text style={styles.cardDetail}>Data e horário: {item.dataHora}</Text>
                     </View>
                 )}
                 contentContainerStyle={styles.listContainer}
